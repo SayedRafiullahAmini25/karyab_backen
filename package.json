@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "npx nodemon ./server",
-    "dev": "npx nodemon ./server"
+    "start": "node ./server",
+    "dev": "node ./server"
   },
   "author": "",
   "license": "ISC",
