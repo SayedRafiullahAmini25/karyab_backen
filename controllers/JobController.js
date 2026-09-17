@@ -58,7 +58,7 @@ const getListOfJobs = async (req, res) => {
 
         const [jobs, total] = await Promise.all([
             JobModel.find(filter)
-                .populate('createdBy', 'name phone profileImage role')
+                .populate('createdBy', 'name phone profileImage role createdAt')
                 .sort({ createdAt: -1 })
                 .skip(skip)
                 .limit(limit),
