@@ -35,15 +35,15 @@ const createJob = async (req, res) => {
       role: "worker",
       job: category,
     }).select("_id");
-    relatedUsers.length > 0 && relatedUsers.map(async (worker) =>
-     await NotificationServices.createNotification({
-        userId: worker._id,
-        title: "اعلان کار جدید",
-        message: `کار جدید در زمینه ${category} به نشر رسید`,
-        type: "NEW_JOB",
-        jobId: job._id,
-      }),
-    );
+      relatedUsers.map(async (worker) =>
+       await NotificationServices.createNotification({
+          userId: worker._id,
+          title: "اعلان کار جدید",
+          message: `کار جدید در زمینه ${category} به نشر رسید`,
+          type: "NEW_JOB",
+          jobId: job._id,
+        }),
+      );
 
     res.json({ success: true, message: "کار با موفقیت به نشر رسید!" });
   } catch (err) {
