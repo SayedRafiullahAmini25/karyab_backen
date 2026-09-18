@@ -24,13 +24,13 @@ const createJob = async (req, res) => {
         })
 
         const relatedUsers = await UserModel.find({ role: 'worker', job: category }).select('_id')
-        await Promise.all(relatedUsers.map(worker => NotificationServices.createNotification({
+        relatedUsers.map(worker => NotificationServices.createNotification({
             userId: worker._id,
             title: 'اعلان کار جدید',
             message: `کار جدید در زمینه ${category} به نشر رسید`,
             type: 'NEW_JOB',
             jobId: job._id
-        })))
+        }))
 
         res.json({ success: true, message: 'کار با موفقیت به نشر رسید!' })
     } catch (err) {
